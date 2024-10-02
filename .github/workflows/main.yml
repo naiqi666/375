@@ -2,9 +2,9 @@ name: Main Pipeline
 
 on:
   push:
-    branches: [ main ]
+    branches: [ "main", "Ava-branch" ]
   pull_request:
-    branches: [ main ]
+    branches: [ "main", "Ava-branch" ]
 
 env:
   DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
@@ -13,54 +13,7 @@ env:
 
 jobs:
 
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Run Linter
-        run: npm run lint
+  node:
+    uses: ./.github/workflows/node.js.yml
 
-  ci:
-    runs-on: ubuntu-latest
-    env:
-      DB_CONNECTION: ${{ secrets.DB_CONNECTION }}
-      BOT_NAME: ${{ secrets.BOT_NAME }}
-      BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
-      BOT_CLIENT_ID: ${{ secrets.BOT_CLIENT_ID }}
-      DB_USERS: ${{ secrets.DB_USERS }}
-      DB_PVQ: ${{ secrets.DB_PVQ }}
-      DB_QTAGS: ${{ secrets.DB_QTAGS }}
-      DB_ASSIGNABLE: ${{ secrets.DB_ASSIGNABLE }}
-      DB_COURSES: ${{ secrets.DB_COURSES }}
-      DB_REMINDERS: ${{ secrets.DB_REMINDERS }}
-      DB_CLIENT_DATA: ${{ secrets.DB_CLIENT_DATA }}
-      DB_POLLS: ${{ secrets.DB_POLLS }}
-      GUILD_MAIN: ${{ secrets.GUILD_MAIN }}
-      GUILD_GATEWAY: ${{ secrets.GUILD_GATEWAY }}
-      GUILD_GATEWAY_INVITE: ${{ secrets.GUILD_GATEWAY_INVITE }}
-      ROLE_ADMIN: ${{ secrets.ROLE_ADMIN }}
-      ROLE_STUDENT_ADMIN: ${{ secrets.ROLE_STUDENT_ADMIN }}
-      ROLE_STAFF: ${{ secrets.ROLE_STAFF }}
-      ROLE_VERIFIED: ${{ secrets.ROLE_VERIFIED }}
-      ROLE_MUTED: ${{ secrets.ROLE_MUTED }}
-      ROLE_LEVEL_ONE: ${{ secrets.ROLE_LEVEL_ONE }}
-      EMAIL_SENDER: ${{ secrets.EMAIL_SENDER }}
-      EMAIL_REPLY_TO: ${{ secrets.EMAIL_REPLY_TO }}
-      EMAIL_REPORT_ADDRESSES: ${{ secrets.EMAIL_REPORT_ADDRESSES }}
-      CHANNEL_ERROR_LOG: ${{ secrets.CHANNEL_ERROR_LOG }}
-      CHANNEL_SERVER_LOG: ${{ secrets.CHANNEL_SERVER_LOG }}
-      CHANNEL_MEMBER_LOG: ${{ secrets.CHANNEL_MEMBER_LOG }}
-      CHANNEL_MOD_LOG: ${{ secrets.CHANNEL_MOD_LOG }}
-      CHANNEL_FEEDBACK: ${{ secrets.CHANNEL_FEEDBACK }}
-      CHANNEL_SAGE: ${{ secrets.CHANNEL_SAGE }}
-      CHANNEL_ANNOUNCEMENTS: ${{ secrets.CHANNEL_ANNOUNCEMENTS }}
-      CHANNEL_ARCHIVE: ${{ secrets.CHANNEL_ARCHIVE }}
-      CHANNEL_ROLE_SELECT: ${{ secrets.CHANNEL_ROLE_SELECT }}
-      ROLE_DROPDOWNS_COURSE_ROLES: ${{ secrets.ROLE_DROPDOWNS_COURSE_ROLES }}
-      ROLE_DROPDOWNS_ASSIGN_ROLES: ${{ secrets.ROLE_DROPDOWNS_ASSIGN_ROLES }}
-    steps:
-      - uses: actions/checkout@v2
-      - name: Install Dependencies
-        run: npm install
-      - name: Run Tests
-        run: npm test
+  #documentation step would go here but not ready yet
