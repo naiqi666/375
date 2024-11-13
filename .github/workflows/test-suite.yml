@@ -1,0 +1,58 @@
+name: test-suite
+
+on:
+  workflow_call:
+
+jobs:
+  codeql-analysis:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up CodeQL
+        uses: github/codeql-action/init@v2
+        with:
+          languages: typescript
+
+      - name: Build files for CodeQL
+        run: |
+          npm install
+          npm run build || true
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v2
+
+  touca-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install TryTouca
+        run: |
+          python -m pip install --upgrade pip
+          pip install trytouca
+
+      - name: Run TryTouca tests
+        env:
+          TOUCA_API_KEY: ${{ secrets.TOUCA_API_KEY }}
+          TOUCA_API_URL: ${{ secrets.TOUCA_API_URL }}
+        run: |
+          python -m trytouca.cli check --test-directory tests
+
+      - name: Publish results to TryTouca
+        env:
+          TOUCA_API_KEY: ${{ secrets.TOUCA_API_KEY }}
+          TOUCA_API_URL: ${{ secrets.TOUCA_API_URL }}
+        run: |
+          python -m trytouca.cli submit --test-directory tests
+
+      - name: Display results
+        run: |
+          python -m trytouca.cli compare --test-directory tests
