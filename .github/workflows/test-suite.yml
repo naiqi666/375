@@ -56,3 +56,24 @@ jobs:
       - name: Display results
         run: |
           python -m trytouca.cli compare --test-directory tests
+
+  testlink:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone TestLink Repository
+        run: |
+          git clone https://github.com/TestLinkOpenSourceTRMS/testlink-code.git
+          cd testlink-code
+
+      - name: Set up environment for TestLink
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y php mysql-server apache2
+          # Additional setup for TestLink dependencies if required
+
+      - name: Run TestLink Setup
+        run: |
+          cd testlink-code
+          # Example: Run tests or start TestLink
+          # php testlink-cli.php --run-tests
