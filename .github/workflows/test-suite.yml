@@ -29,15 +29,20 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Debug Python Environment
+        run: |
+          python --version
+          python -m pip --version
+
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.x'
+          python-version: '3.10'
 
       - name: Install TryTouca
         run: |
           python -m pip install --upgrade pip
-          pip install trytouca
+          pip install trytouca --index-url https://pypi.org/simple
 
       - name: Run TryTouca tests
         env:
@@ -56,6 +61,9 @@ jobs:
       - name: Display results
         run: |
           python -m trytouca.cli compare --test-directory tests
+
+
+
 
   testlink:
     runs-on: ubuntu-latest
