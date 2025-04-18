@@ -38,7 +38,8 @@ jobs:
     - name: Run Buildx
       run: |
           docker buildx build . \
-            --platform linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64 \
+            platforms: linux/amd64,linux/arm64,linux/386,linux/arm/v7
+
             --output "type=image,push=true" \
             --file Dockerfile \
             --tag jun332/jun_131:latest
