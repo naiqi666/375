@@ -110,6 +110,20 @@ COPY . .
 # RUN npm run build
 
 # Expose the port that the application listens on.
+
+
+
+WORKDIR /usr/src/app
+
+COPY package.json ./
+
+RUN npm install
+
+COPY . .
+
+
+
+
 EXPOSE 8080
 
 # Run the application.
