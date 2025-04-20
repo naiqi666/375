@@ -3,9 +3,9 @@ import { ApplicationCommandOptionData, ButtonInteraction, Client,
 	ChatInputCommandInteraction, ActionRowBuilder, EmbedBuilder, ApplicationCommandOptionType, InteractionResponse, ButtonBuilder, ButtonStyle } from 'discord.js';
 import parse from 'parse-duration';
 import { Command } from '@lib/types/Command';
-import { dateToTimestamp, generateErrorEmbed } from '@root/src/lib/utils/generalUtils';
+import { dateToTimestamp, generateErrorEmbed } from '@root/lib/utils/generalUtils';
 import { Poll, PollResult } from '@lib/types/Poll';
-import { SageInteractionType } from '@root/src/lib/types/InteractionType';
+import { SageInteractionType } from '@root/lib/types/InteractionType';
 
 const QUESTION_CHAR_LIMIT = 256;
 const args = ['Single', 'Multiple'];

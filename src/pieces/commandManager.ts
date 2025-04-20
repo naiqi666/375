@@ -4,7 +4,7 @@ import { Collection, Client, CommandInteraction, ApplicationCommand,
 	ButtonInteraction, ModalBuilder, TextInputBuilder, ActionRowBuilder,
 	ModalActionRowComponentBuilder, ApplicationCommandType, ApplicationCommandDataResolvable, ChannelType, ApplicationCommandPermissionType, TextInputStyle,
 	ChatInputCommandInteraction } from 'discord.js';
-import { isCmdEqual, readdirRecursive } from '@root/src/lib/utils/generalUtils';
+import { isCmdEqual, readdirRecursive } from '@root/lib/utils/generalUtils';
 import { Command } from '@lib/types/Command';
 import { SageData } from '@lib/types/SageData';
 import { DB, GUILDS, MAINTAINERS, CHANNELS } from '@root/config';

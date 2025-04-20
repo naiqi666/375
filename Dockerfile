@@ -101,6 +101,9 @@ COPY --from=build /usr/src/app/assets ./assets
 COPY --from=build /usr/src/app/package.json ./package.json
 COPY --from=build /usr/src/app/package-lock.json ./package-lock.json
 COPY --from=build /usr/src/app/tsconfig.json ./tsconfig.json
+
+
+
 COPY . .
 
 # ENV NODE_PATH=./src
@@ -113,13 +116,7 @@ COPY . .
 
 
 
-WORKDIR /usr/src/app
 
-COPY package.json ./
-
-RUN npm install
-
-COPY . .
 
 
 

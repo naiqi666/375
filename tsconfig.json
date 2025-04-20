@@ -2,14 +2,15 @@
     "compilerOptions": {
         "allowJs": true,
         "allowSyntheticDefaultImports": true,
-        "baseUrl": "./",
+        "baseUrl": ".",
         "esModuleInterop": true,
         "outDir": "./dist",
         "paths": {
-			"@root/*": ["./*"],
+            "@root/*":        ["src/*"],
+            "@root/package.json": ["package.json"],
 			"@lib/*": ["src/lib/*"],
 			"@pieces/*": ["src/pieces/*"]
-        },
+        },  
         "resolveJsonModule": true,
         "rootDir": "./",
 		"skipLibCheck": true,
@@ -27,14 +28,5 @@
         "**/node_modules",
 		"**/node_modules/discord.js/typings/index.d.ts", // problematic in djs versions >13.1
 		"**/dist"
-    ]
+    ],
 }
-
-
-  
-  
-  
-  
-  
-  
-  

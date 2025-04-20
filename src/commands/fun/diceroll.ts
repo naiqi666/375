@@ -1,6 +1,6 @@
 import { ApplicationCommandOptionData, ChatInputCommandInteraction, EmbedBuilder, ApplicationCommandOptionType, InteractionResponse } from 'discord.js';
 import { Command } from '@lib/types/Command';
-import { generateErrorEmbed } from '@root/src/lib/utils/generalUtils';
+import { generateErrorEmbed } from '@root/lib/utils/generalUtils';
 
 const DEFAULT_RANGE = [1, 6];
 const DEFAULT_ROLLS = 1;
