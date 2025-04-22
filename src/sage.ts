@@ -89,5 +89,5 @@ async function main() {
 		setTimeout(() => bot.user.setActivity(activity, { type: ActivityType.Playing }), 30e3);
 	});
 }
-
+//ssss
 main();
